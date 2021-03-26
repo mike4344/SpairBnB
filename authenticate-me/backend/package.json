@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mike4344/oddjob.git"
+    "url": "git+https://github.com/mike4344/SpairBnB.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mike4344/oddjob/issues"
+    "url": "https://github.com/mike4344/spairBnB/issues"
   },
-  "homepage": "https://github.com/mike4344/oddjob#readme",
+  "homepage": "https://github.com/mike4344/spairBnB#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
