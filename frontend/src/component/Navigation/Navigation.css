@@ -1,0 +1,77 @@
+/* * {
+  border: 1px solid red;
+} */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+ul {
+  width: 100%;
+  height: 10%;
+  box-sizing: border-box;
+}
+.nav-bar_home-link {
+  height: 100%;
+  width: 28px;
+  transition: all 0.5s;
+}
+.nav-bar_home-link:hover {
+  animation: pulse 1s linear infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+#home-logo {
+  height: 100%;
+  width: 100%;
+}
+.signup-button {
+  color: rgb(85, 85, 85);
+  border: none;
+  transition: all 0.5s;
+  background-color: white;
+  font-weight: 600;
+  height: 100%;
+  font-size: 14px;
+  border-radius: 50%;
+  text-decoration: none;
+  word-wrap: none;
+  white-space: nowrap;
+}
+@keyframes pulseLogin {
+  0% {
+    transform: translateY(-1px);
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: translateY(-3px);
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: translateY(-1px);
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.signup-button:hover {
+  animation: pulseLogin 0.8s linear infinite;
+}
+.nav-button_box {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+}

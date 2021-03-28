@@ -18,16 +18,22 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink  to="/signup"><button className="signup-button">Sign Up</button></NavLink>
       </>
     );
   }
 
   return (
     <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+      <li className='nav'>
+        <NavLink className='nav-bar_home-link' exact to="/">
+          <img onMouseEnter={e => e.target.src = '/Icons/icons8-home.gif' }
+            onMouseLeave={e => e.target.src = '/Icons/icons8-home.svg' }
+            id='home-logo' src='/Icons/icons8-home.svg' alt='Home'/>
+        </NavLink>
+        <div className='nav-button_box'>
         {isLoaded && sessionLinks}
+        </div>
       </li>
     </ul>
   );

@@ -10,10 +10,24 @@ const { User } = require('../../db/models');
 const router = express.Router();
 
 const validateSignup = [
-    check('email')
-      .exists({ checkFalsy: true })
-      .isEmail()
-      .withMessage('Please provide a valid email.'),
+  check('email')
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a value for the Email Address.')
+  .isLength({ max: 100 })
+  .withMessage('Email Address must be less than 100 characters.')
+  .isEmail()
+  .withMessage('Please enter a valid Email Address.')
+  .custom((value) => {
+      return User.findOne({
+          where: {
+              email: value
+          }
+      }).then((user) => {
+          if (user) {
+              return Promise.reject('The provided Email Address is already in use.')
+          }
+      })
+  }),
     check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
@@ -24,8 +38,10 @@ const validateSignup = [
       .withMessage('Username cannot be an email.'),
     check('password')
       .exists({ checkFalsy: true })
-      .isLength({ min: 6 })
-      .withMessage('Password must be 6 characters or more.'),
+      .isLength({ min: 8 })
+      .withMessage('Password must be 8 characters or more.')
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
+      .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
     handleValidationErrors,
   ];
 

@@ -1,0 +1,31 @@
+.login_button {
+  color: rgb(85, 85, 85);
+  border: none;
+  transition: all 0.5s;
+  width: 8%;
+  background-color: white;
+  font-weight: 600;
+  height: 100%;
+  font-size: 14px;
+  border-radius: 50%;
+  word-wrap: none;
+  white-space: nowrap;
+}
+@keyframes pulseLogin {
+  0% {
+    transform: translateY(-1px);
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: translateY(-3px);
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: translateY(-1px);
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.login_button:hover {
+  animation: pulseLogin 0.8s linear infinite;
+}
