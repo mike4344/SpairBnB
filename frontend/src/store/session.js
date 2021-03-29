@@ -38,14 +38,42 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
+export const createUser = (user) => async (dispatch) => {
+  const { images, image, username, email ,password} = user;
+  const formData = new FormData();
+  formData.append('username', username);
+  formData.append('email', email);
+  formData.append('password', password);
+
+  if (images && images.length !== 0) {
+    for (let i = 0; i < images.length; i++) {
+      formData.append('image', images[i])
+    }
+  }
+  if (image) formData.append('image', image);
+  const response = await csrfFetch('/api/users', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    body: formData
+  })
+  console.log(response)
+  const data = await response.json();
+
+  dispatch(setUser(data.user));
+  return response;
+}
+
 export const signup = (user) => async (dispatch) => {
-    const { username, email, password } = user;
+    const { username, email, password, image } = user;
     const response = await csrfFetch("/api/users", {
       method: "POST",
       body: JSON.stringify({
         username,
         email,
         password,
+        file: image
       }),
     });
     const data = await response.json();

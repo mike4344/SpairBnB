@@ -13,6 +13,7 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [image, setImage] = useState(null)
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -20,7 +21,8 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+
+      return dispatch(sessionActions.createUser({ email, username, password, image }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -28,6 +30,11 @@ function SignupFormPage() {
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
+  const updateFile = (e) => {
+    const file = e.target.files[0]
+    if (file) setImage(file);
+  };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -52,6 +59,9 @@ function SignupFormPage() {
           required
         />
       </label>
+        <label>
+          <input type="file" onChange={updateFile} />
+        </label>
       <label>
         Password
         <input
