@@ -24,18 +24,20 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li className='nav'>
-        <NavLink className='nav-bar_home-link' exact to="/">
-          <img onMouseEnter={e => e.target.src = '/Icons/icons8-home.gif' }
-            onMouseLeave={e => e.target.src = '/Icons/icons8-home.svg' }
-            id='home-logo' src='/Icons/icons8-home.svg' alt='Home'/>
-        </NavLink>
-        <div className='nav-button_box'>
-        {isLoaded && sessionLinks}
+    <nav className="nav-container">
+
+        <div className='nav'>
+          <NavLink className='nav-bar_home-link' exact to="/">
+            <img onMouseEnter={e => e.target.src = '/Icons/icons8-home.gif' }
+              onMouseLeave={e => e.target.src = '/Icons/icons8-home.svg' }
+              id='home-logo' src='/Icons/icons8-home.svg' alt='Home'/>
+          </NavLink>
+          <div className='nav-button_box'>
+          {isLoaded && sessionLinks}
+          </div>
         </div>
-      </li>
-    </ul>
+
+    </nav>
   );
 }
 

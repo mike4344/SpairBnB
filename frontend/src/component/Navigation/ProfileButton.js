@@ -30,16 +30,16 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <div className='nav-button_box'>
-      <button onClick={openMenu}>
-        menu
+    <div className='nav-button_box_logged-in'>
+      <button className='nav-button_menu' onClick={openMenu}>
+        <img src='/Icons/icons8-menu-24.png' alt='open menu'/>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className='logout-button' onClick={logout}>Log Out</button>
           </li>
         </ul>
       )}
