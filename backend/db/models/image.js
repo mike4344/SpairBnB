@@ -8,5 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   Image.associate = function(models) {
     // associations can be defined here
   };
+  Image.findBySpotId = function(spotId) {
+    return Image.findAll({where: {SpotId: spotId}});
+  }
   return Image;
 };

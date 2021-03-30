@@ -5,9 +5,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors} = require('../../utils/validation')
 const {
   singleMulterUpload,
-  singlePublicFileUpload,
-  multipleMulterUpload,
-  multiplePublicFileUpload,
+  singlePublicFileUpload
 } = require("../../awsS3");
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
