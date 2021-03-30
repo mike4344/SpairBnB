@@ -8,16 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      BookerId: {
+      bookerId: {
         type: Sequelize.INTEGER
       },
-      SpotId: {
+      spotId: {
         type: Sequelize.INTEGER
       },
-      StartDate: {
+      startDate: {
         type: Sequelize.DATE
       },
-      EndDate: {
+      endDate: {
         type: Sequelize.DATE
       },
       createdAt: {

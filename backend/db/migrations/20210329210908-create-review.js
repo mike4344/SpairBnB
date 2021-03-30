@@ -8,16 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      AuthorId: {
+      authorId: {
         type: Sequelize.INTEGER
       },
-      SpotId: {
+      spotId: {
         type: Sequelize.INTEGER
       },
-      Rating: {
+      rating: {
         type: Sequelize.INTEGER
       },
-      ReviewBody: {
+      reviewBody: {
         type: Sequelize.TEXT
       },
       createdAt: {

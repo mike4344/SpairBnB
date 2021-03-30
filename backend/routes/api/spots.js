@@ -10,24 +10,24 @@ const {multipleMulterUpload, multiplePublicFileUpload} = require('../../awsS3')
 const router = express.Router();
 //SpotName, SpotDetails, location, address, city, state
 const validateSpot = [
-    check('SpotName')
+    check('spotName')
       .exists({ checkFalsy: true })
       .isLength({min: 4, max: 20})
       .withMessage('Please provide a spot name between 4 and 20 characters'),
-    check('SpotDetails')
+    check('spotDetails')
       .exists({ checkFalsy: true })
       .isLength({min: 100})
       .withMessage('Please provide valid spot details greater than 100 characters'),
-    check('Location')
+    check('location')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a valid location'),
-    check('Address')
+    check('address')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a valid address'),
-    check('City')
+    check('city')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a valid city'),
-    check('State')
+    check('state')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a valid state'),
       handleValidationErrors
@@ -51,11 +51,19 @@ router.get(
 router.post(
     '/',
     requireAuth,
+    multipleMulterUpload('images'),// going to need to add validations for file size and amount
     validateSpot,
     asyncHandler(async (req, res, next) => {
-      const { SpotId, SpotDetails, Location,  Address, City, State} = req.body;
-      const newSpot = await Spot.create({ SpotId, SpotDetails, Location, Address, City, State})
-      return res.json(`/spot/${newSpot}`)
+      const {spotName, spotDetails, location,  address, city, state} = req.body;
+      const imageUrls = await multiplePublicFileUpload(req.file)// check here for multiple upload data type
+      const newSpot = await Spot.create({ spotName, spotDetails, location, address, city, state})
+      imageUrls.forEach(imageUrl =>{
+        Image.create({ spotId: newSpot.id, imageUrl})
+      })
+      return res.json({
+        spot: newSpot,
+        images: imageUrls
+      })
     }),
   );
 
@@ -65,7 +73,10 @@ router.put('/:spotId',
   asyncHandler(async (req, res, next) => {
     const spotId = req.params.spotId
     const spot = await Spot.getSpot(spotId)
-    const {}
+    const {spotName, spotDetails, location,  address, city, state} = req.body;
+    if(checkIfCurrentUser(spot.OwnerId)){
+      spot.update({spotName, spotDetails, location,  address, city, state})
+    }
   })
 
 
@@ -77,7 +88,7 @@ router.delete(
     asyncHandler(async (_req, res, next) => {
       const spotId = _req.params.spotId
       const spot = Spot.getSpot(spotId)
-      if(checkIfCurrentUser(spot.OwnerId)){
+      if(checkIfCurrentUser(spot.ownerId)){
         await spot.deleteDependants()
         await spot.destroy()
         res.json({success: 'success'})
@@ -87,5 +98,5 @@ router.delete(
     })
 
   );
-
+//need to add ability to add remove images
 module.exports = router;

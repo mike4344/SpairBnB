@@ -8,25 +8,25 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      SpotName: {
+      spotName: {
         type: Sequelize.STRING
       },
-      SpotDetails: {
+      spotDetails: {
         type: Sequelize.TEXT
       },
-      Location: {
+      location: {
         type: Sequelize.STRING
       },
-      Address: {
+      address: {
         type: Sequelize.STRING
       },
-      City: {
+      city: {
         type: Sequelize.STRING
       },
-      State: {
+      state: {
         type: Sequelize.STRING
       },
-      OwnerId: {
+      ownerId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -2,13 +2,13 @@
 const {Image} = require('./index')
 module.exports = (sequelize, DataTypes) => {
   const Spot = sequelize.define('Spot', {
-    SpotName: DataTypes.STRING,
-    SpotDetails: DataTypes.TEXT,
-    Location: DataTypes.STRING,
-    Address: DataTypes.STRING,
-    City: DataTypes.STRING,
-    State: DataTypes.STRING,
-    OwnerId: DataTypes.INTEGER
+    spotName: DataTypes.STRING,
+    spotDetails: DataTypes.TEXT,
+    location: DataTypes.STRING,
+    address: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    ownerId: DataTypes.INTEGER
   }, {});
   Spot.associate = function(models) {
     // associations can be defined here

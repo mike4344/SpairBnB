@@ -60,7 +60,6 @@ export const createUser = (user) => async (dispatch) => {
     },
     body: formData
   })
-  console.log(response)
   const data = await response.json();
 
   dispatch(setUser(data.user));
