@@ -31,6 +31,7 @@ function ProfileButton({ user }) {
 
   return (
     <div className='nav-button_box_logged-in'>
+
       <button className='nav-button_menu' onClick={openMenu}>
         <img src='/Icons/icons8-menu-24.png' alt='open menu'/>
       </button>
