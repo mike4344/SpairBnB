@@ -28,7 +28,7 @@ export const getSpot = (spotId) => async (dispatch) => {
     dispatch(setSpot(data.spot, data.images))
     return response
 }
-export const removeSpot = (spotId) => async (dispatch) => {
+export const deleteSpot = (spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/:${spotId}`, {
         method: 'DELETE'
     })
@@ -43,6 +43,7 @@ export const updateSpot = (spot) => async (dispatch) => {
         },
         body: JSON.stringify(spot)
     })
+    const data = await response.json();
     dispatch(setSpot(data.spot, data.images))
     return response
 }
