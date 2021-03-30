@@ -27,6 +27,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
 
     },
+    firstName: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,
@@ -55,8 +63,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   // alloows the conversion of the user object to a safe one that can be used with JWTs without sharing passwords
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
-    const { id, username, email, imageUrl} = this; // context will be the User instance
-    return { id, username, email, imageUrl };
+    const { id, username, email, imageUrl, firstName, lastName} = this; // context will be the User instance
+    return { id, username, email, imageUrl, firstName, lastName};
   };
   // method on the individual user objects checking the password against the hashed password on the user its call on
   User.prototype.validatePassword = function (password) {
@@ -82,13 +90,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   // deconstructs the data from the argument creating a user returning the result of finding that user in the database to be used for the JWT
-  User.signup = async function ({ username, email, password, imageUrl }) {
+  User.signup = async function ({ username, email, password, imageUrl, firstName, lastName }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       hashedPassword,
       imageUrl,
+      firstName,
+      lastName,
     });
     return await User.scope('currentUser').findByPk(user.id);
   };

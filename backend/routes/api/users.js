@@ -48,6 +48,16 @@ const validateSignup = [
       .withMessage('Password must be 8 characters or more.')
       .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
       .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
+    check('firstName')
+      .exists({ checkFalsey: true })
+      .withMessage('Please provide a first name')
+      .isLength({ max:30 })
+      .withMessage('name cannot be longer than 30 characters.'),
+    check('lastName')
+      .exists({ checkFalsey: true })
+      .withMessage('Please provide a last name')
+      .isLength({max:30})
+      .withMessage('last name cannot be longer than 30 characters'),
     handleValidationErrors,
   ];
 
@@ -58,10 +68,10 @@ router.post(
     validateSignup,
     asyncHandler(async (req, res) => {
 
-      const { email, password, username } = req.body;
+      const { email, password, username, firstName, lastName} = req.body;
 
       const profileImageUrl = await singlePublicFileUpload(req.file)
-      const user = await User.signup({ email, username, password, imageUrl:profileImageUrl });
+      const user = await User.signup({ email, username, password, imageUrl:profileImageUrl, firstName, lastName });
 
       await setTokenCookie(res, user);
 
