@@ -63,7 +63,7 @@ const requireAuth = [
     },
   ];
 
-  const checkIfCurrentUser = (userId) => {
+  const checkIfCurrentUser = (userId, req) => {
     const { token } = req.cookies
    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
       if (err) {
@@ -77,4 +77,15 @@ const requireAuth = [
       }
     });
   }
-  module.exports = { setTokenCookie, restoreUser, requireAuth, checkIfCurrentUser };
+  const getCurrentUserId = (req) => {
+    const {token} = req.cookies
+    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
+      if(err){
+        return false
+      }
+      const {id} = jwtPayload.data
+
+      return  id
+    })
+  }
+  module.exports = { setTokenCookie, restoreUser, requireAuth, checkIfCurrentUser, getCurrentUserId };

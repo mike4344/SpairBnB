@@ -25,6 +25,9 @@ function App() {
           <Route path="/spots">
             <SpotsCreationFormPage />
           </Route>
+          {/* <Route path="/spots/:spotId">
+            <SpotsDisplayPage />
+          </Route> */}
         </Switch>
 
       )}

@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { requireAuth, checkIfCurrentUser} = require('../../utils/auth.js');
+const { requireAuth, checkIfCurrentUser, getCurrentUserId } = require('../../utils/auth.js');
 const {Spot, Image} = require('../../db/models')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -18,9 +18,9 @@ const validateSpot = [
       .exists({ checkFalsy: true })
       .isLength({min: 100})
       .withMessage('Please provide valid spot details greater than 100 characters'),
-    check('location')
-      .exists({ checkFalsy: true })
-      .withMessage('Please provide a valid location'),
+    // check('location')
+    //   .exists({ checkFalsy: true })
+    //   .withMessage('Please provide a valid location'),
     check('address')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a valid address'),
@@ -50,13 +50,14 @@ router.get(
 //Create a spot
 router.post(
     '/',
-    requireAuth,
     multipleMulterUpload('images'),// going to need to add validations for file size and amount
+    requireAuth,
     validateSpot,
     asyncHandler(async (req, res, next) => {
+      const ownerId = await getCurrentUserId(req)
       const {spotName, spotDetails, location,  address, city, state} = req.body;
-      const imageUrls = await multiplePublicFileUpload(req.file)// check here for multiple upload data type
-      const newSpot = await Spot.create({ spotName, spotDetails, location, address, city, state})
+      const imageUrls = await multiplePublicFileUpload(req.files)// check here for multiple upload data type
+      const newSpot = await Spot.create({ spotName, spotDetails, location, address, city, state, ownerId})
       imageUrls.forEach(imageUrl =>{
         Image.create({ spotId: newSpot.id, imageUrl})
       })
@@ -88,7 +89,7 @@ router.delete(
     asyncHandler(async (_req, res, next) => {
       const spotId = _req.params.spotId
       const spot = Spot.getSpot(spotId)
-      if(checkIfCurrentUser(spot.ownerId)){
+      if(checkIfCurrentUser(spot.ownerId, req)){
         await spot.deleteDependants()
         await spot.destroy()
         res.json({success: 'success'})

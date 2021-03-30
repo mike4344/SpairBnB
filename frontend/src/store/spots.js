@@ -49,6 +49,7 @@ export const updateSpot = (spot) => async (dispatch) => {
 }
 export const createSpot = (spot) => async (dispatch) => {
     const {images, spotName, spotDetails, location, address, city, state } = spot
+    console.log(images)
     const formData = new FormData()
     formData.append('spotName', spotName)
     formData.append('spotDetails', spotDetails)
@@ -58,9 +59,10 @@ export const createSpot = (spot) => async (dispatch) => {
     formData.append('state', state)
     if (images && images.length !== 0){
         for(let i = 0; i < images.length; i++){
-            formData.append('image', images[i])
+            formData.append('images', images[i])
         }
     }
+    console.log(formData.toString())
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: {

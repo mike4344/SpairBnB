@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom'
 import * as SpotActions from '../../store/spots'
+import Geocode from "react-geocode";
 
 function SpotsCreationFormPage() {
     const dispatch = useDispatch();
@@ -18,17 +19,29 @@ function SpotsCreationFormPage() {
 
     if(!sessionUser) return <Redirect to="/" />
 
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        return dispatch(SpotActions.createSpot({images, spotName, spotDetails, location, address, city, state}))
+
+            Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+            Geocode.setLanguage('en')
+            Geocode.setRegion('us')
+            Geocode.setLocationType('ROOFTOP')
+
+            Geocode.fromAddress(`${address}, ${city}, ${state}, USA`).then((response) => {
+                const {lat , lng} = response.results[0].geometry.location
+                setLocation(`${lat},${lng}`)
+            })
+            return dispatch(SpotActions.createSpot({images, spotName, spotDetails, location, address, city, state}))
             .catch(async (res) =>{
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             })
+
     }
     const updateFiles = e => {
         const files = e.target.files
-        if(files) setImages(files)
+        if(files) setImages([...files])
     }
     return(
         <form onSubmit={handleSubmit}>
@@ -133,6 +146,7 @@ function SpotsCreationFormPage() {
                     <option value="WY">WY</option>
                 </select>
             </label>
+            <button type="submit">Sign Up</button>
         </form>
     )
 }
