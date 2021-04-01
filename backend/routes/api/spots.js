@@ -36,11 +36,13 @@ const validateSpot = [
 
 //Finds spot by id
 router.get(
-    '/:spotId',
+    '/:spotId(\\d+)',
     asyncHandler(async (req, res, next) => {
-      const spotId = req.params.spotId
-      let spot = Spot.getSpot(spotId)
-      let images = Image.findBySpotId(spotId)
+      console.log(req.params.spotId)
+      const spotId = parseInt(req.params.spotId, 10)
+
+      let spot = await Spot.getSpot(spotId)
+      let images = await Image.findBySpotId(spotId)
       if (spot) {
         return res.json({spot, images});
       } else return res.json({});
@@ -68,7 +70,7 @@ router.post(
     }),
   );
 
-router.put('/:spotId',
+router.put('/:spotId(\\d+)',
   requireAuth,
   validateSpot,
   asyncHandler(async (req, res, next) => {
@@ -84,7 +86,7 @@ router.put('/:spotId',
 )
   // Delete a spot
 router.delete(
-    '/:spotId',
+    '/:spotId(\\d+)',
     requireAuth,
     asyncHandler(async (_req, res, next) => {
       const spotId = _req.params.spotId
@@ -97,7 +99,15 @@ router.delete(
         res.json({success: 'failure' })
       }
     })
-
   );
+  router.get('/search', asyncHandler(async (req, res, next) => {
+    const locationList = await Spot.findAll()
+    const updatedLocationList = await Promise.all(locationList.map(async (location) => {
+      location.dataValues.images = await Image.findBySpotId(location.id)
+      return location
+    }))
+    console.log(updatedLocationList)
+    res.json(updatedLocationList)
+  }))
 //need to add ability to add remove images
 module.exports = router;

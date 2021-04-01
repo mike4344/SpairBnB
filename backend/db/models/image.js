@@ -11,5 +11,8 @@ module.exports = (sequelize, DataTypes) => {
   Image.findBySpotId = function(spotId) {
     return Image.findAll({where: {spotId}});
   }
+  Image.findOneBySpotId = function(spotId) {
+    return Image.findOne({where: {spotId}})
+  }
   return Image;
 };

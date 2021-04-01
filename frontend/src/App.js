@@ -6,6 +6,8 @@ import SignupFormPage from "./component/SignUpFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./component/Navigation";
 import SpotsCreationFormPage from "./component/SpotsCreationFormPage"
+import SpotsDisplayPage from "./component/SpotsDisplayPage"
+import SpotsSearchDisplayPage from "./component/SpotSearchDisplayPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -22,12 +24,15 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/spots">
+          <Route exact path="/spots">
             <SpotsCreationFormPage />
           </Route>
-          {/* <Route path="/spots/:spotId">
+          <Route exact path="/spots/search">
+            <SpotsSearchDisplayPage />
+          </Route>
+          <Route path="/spots/:spotId">
             <SpotsDisplayPage />
-          </Route> */}
+          </Route>
         </Switch>
 
       )}

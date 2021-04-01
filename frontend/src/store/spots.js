@@ -20,10 +20,15 @@ const removeSpot = () => {
         type: REMOVE_SPOT
     }
 }
-
+export const searchSpot = async (state) => {
+    const response = await csrfFetch(`/api/spots/search`)
+    const data = await response.json()
+    console.log('data', data)
+    return data
+}
 
 export const getSpot = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/:${spotId}`)
+    const response = await csrfFetch(`/api/spots/${spotId}`)
     const data = await response.json();
     dispatch(setSpot(data.spot, data.images))
     return response
@@ -62,7 +67,6 @@ export const createSpot = (spot) => async (dispatch) => {
             formData.append('images', images[i])
         }
     }
-    console.log(formData.toString())
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: {

@@ -20,5 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     await Image.destroy({where: {spotId: this.id}})
 
   }
+
+  Spot.findByState = async function (state){
+    return await Spot.findAll({where: {state: state}})
+  }
   return Spot;
 };
