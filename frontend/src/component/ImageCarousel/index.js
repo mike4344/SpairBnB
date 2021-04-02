@@ -1,12 +1,9 @@
 import React, { useState, useEffect} from 'react';
 
 function ImageCarousel ({images}){
-    console.log(images)
     const [imageIndex, setImageIndex] = useState(0)
     const max = images.length - 1
     useEffect(() => {
-
-        console.log(imageIndex, images[imageIndex].imageUrl)
     },[imageIndex])
     return (
         <div className='image-container'>

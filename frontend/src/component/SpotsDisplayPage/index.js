@@ -4,6 +4,9 @@ import {useParams} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import * as SpotActions from '../../store/spots'
 import ImageCarousel from '../ImageCarousel'
+import BookingsModal from '../BookingsModal'
+import ReviewModal from '../ReviewModal'
+import ReviewDisplayPage from '../ReviewDisplayPage'
 function SpotsDisplayPage () {
     const dispatch = useDispatch();
     const {spotId} = useParams()
@@ -25,6 +28,9 @@ function SpotsDisplayPage () {
                 <pre>
                     {spot.spotDetails}
                 </pre>
+                <BookingsModal spotId={spot.id} />
+                <ReviewModal spotId={spot.id} />
+                <ReviewDisplayPage spotId={spot.id} />
             </div>
             )}
         </div>

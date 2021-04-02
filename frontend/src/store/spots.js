@@ -27,6 +27,30 @@ export const searchSpot = async (state) => {
     return data
 }
 
+export const postBooking = async (spotId, booking) =>{
+    console.log('from thunk',spotId)
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`,{
+        method: 'POST',
+        body: JSON.stringify(booking)
+    }
+    )
+    return response
+}
+
+export const postReview = async (spotId, review) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
+        method: 'POST',
+        body: JSON.stringify(review)
+    })
+    return response
+}
+
+export const getReview = async (spotId) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    const data = await response.json();
+
+    return data
+}
 export const getSpot = (spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`)
     const data = await response.json();

@@ -4,6 +4,7 @@ import * as SpotActions from '../../store/spots'
 import {useDispatch} from 'react-redux'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow}  from '@react-google-maps/api'
 import ImageCarousel from '../ImageCarousel'
+import Geocode from "react-geocode";
 const containerStyle = {width: '400px', height: '400px'}
 
 function SpotsSearchDisplayPage () {
@@ -14,6 +15,9 @@ function SpotsSearchDisplayPage () {
     const [map, setMap] = useState(null)
     const [selectedSpot, setSelectedSpot] = useState({})
     const [location, setLocation] = useState({})
+    const [results, setResults] = useState({})
+    const [errors, setErrors] = useState([])
+    const [searchQuery, setSearchQuery] = useState('')
     const onSelect = spot => {
         const locationString = spot.location
         const locationArray = locationString.split(',')
@@ -23,7 +27,6 @@ function SpotsSearchDisplayPage () {
         }
         setLocation(locationObject)
        setSelectedSpot(spot)
-        console.log(spot)
     }
 
     useEffect( () => {
@@ -60,10 +63,35 @@ function SpotsSearchDisplayPage () {
           const onUnmount = React.useCallback(function callback(map) {
             setMap(null)
           }, [])
+          const handleSubmit = e =>{
+            e.preventDefault()
+            Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+            Geocode.setLanguage('en')
+            Geocode.setRegion('us')
+            Geocode.setLocationType('ROOFTOP')
+            console.log('results', searchQuery)
+            Geocode.fromAddress(`${searchQuery}`).then((response) => {
+                const {lat , lng} = response.results[0].geometry.location
+                console.log(lat, lng)
+                setCenter({lat, lng})
+            }).catch(e => setErrors(e))
+
+          }
     return(
         <div className='page-container'>
+            <ul>
+                {errors.map((error, idx) => <li key={idx}> {error}</li>)}
+            </ul>
             {searchIsLoaded && (
                 <div className='search'>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                        type='text'
+                        value={searchQuery}
+                        onChange={(e) =>setSearchQuery(e.target.value)}
+                        />
+                        <button type='submit'>Search</button>
+                    </form>
                    {isLoaded && (
                        <GoogleMap
                         mapContainerStyle={containerStyle}

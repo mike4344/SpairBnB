@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { requireAuth, checkIfCurrentUser, getCurrentUserId } = require('../../utils/auth.js');
-const {Spot, Image} = require('../../db/models')
+const {Spot, Image, Bookmark, Review} = require('../../db/models')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const {multipleMulterUpload, multiplePublicFileUpload} = require('../../awsS3')
@@ -33,14 +33,21 @@ const validateSpot = [
       handleValidationErrors
   ];
 
+  const validateBooking = [
+    check('startDate')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a valid start date')
+      .custom((possibleDate) => {
+
+      })
+  ]
+
 
 //Finds spot by id
 router.get(
     '/:spotId(\\d+)',
     asyncHandler(async (req, res, next) => {
-      console.log(req.params.spotId)
       const spotId = parseInt(req.params.spotId, 10)
-
       let spot = await Spot.getSpot(spotId)
       let images = await Image.findBySpotId(spotId)
       if (spot) {
@@ -106,8 +113,30 @@ router.delete(
       location.dataValues.images = await Image.findBySpotId(location.id)
       return location
     }))
-    console.log(updatedLocationList)
     res.json(updatedLocationList)
   }))
-//need to add ability to add remove images
+
+  router.post('/:spotId(\\d+)/bookings', requireAuth, asyncHandler(async (req, res, next) => {
+    const {startDate, endDate} = req.body;
+    const spotId = parseInt(req.params.spotId, 10)
+    const bookerId = await getCurrentUserId(req)
+    const booking = await Bookmark.create({startDate, endDate, spotId, bookerId})
+    res.json(booking)
+  }))
+
+  router.get('/:spotId(\\d+)/reviews', asyncHandler(async (req, res, next)=>{
+    const spotId = parseInt(req.params.spotId, 10)
+    const reviews = await Review.findAll({where: {spotId}})
+    res.json(reviews)
+  }))
+
+
+  router.post('/:spotId(\\d+)/reviews', requireAuth, asyncHandler(async (req, res, next)=>{
+    const {reviewBody, rating,} = req.body;
+    const spotId = parseInt(req.params.spotId, 10)
+    const authorId = await getCurrentUserId(req)
+    const review = await Review.create({reviewBody, rating, spotId, authorId})
+    res.json(review)
+  }))
+  //need to add ability to add remove images
 module.exports = router;
