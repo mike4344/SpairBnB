@@ -1,12 +1,13 @@
 // frontend/src/components/SpotsCreationFormPage/index.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Redirect} from 'react-router-dom'
+import {Redirect, useHistory} from 'react-router-dom'
 import * as SpotActions from '../../store/spots'
 import Geocode from "react-geocode";
 
 function SpotCreationForm() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user)
     const [images, setImages] = useState([])
     const [spotName, setSpotName] = useState('')
@@ -17,8 +18,8 @@ function SpotCreationForm() {
     const [state, setState] = useState('')
     const [errors, setErrors] = useState([])
 
-    if(!sessionUser) return <Redirect to="/" />
 
+    if(!sessionUser) return <Redirect to="/" />
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -32,10 +33,14 @@ function SpotCreationForm() {
                 const {lat , lng} = response.results[0].geometry.location
                 setLocation(`${lat},${lng}`)
             })
-            return dispatch(SpotActions.createSpot({images, spotName, spotDetails, location, address, city, state}))
+            return dispatch(SpotActions.createSpot({images, spotName, spotDetails, location, address, city, state})).then(async (res) => {
+               let data =  await res.json();
+                history.push(`/spots/${data.spot.id}`)
+            })
             .catch(async (res) =>{
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+
+                // data = await res.json();
+                // if (data && data.errors) setErrors(data.errors);
             })
 
     }

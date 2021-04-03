@@ -45,7 +45,7 @@ function BookingsForm({spotId}) {
           required
         />
       </label>
-      <button type="submit">Confirm Booking</button>
+      <button className='signup-button'type="submit">Confirm Booking</button>
     </form>
   );
 }

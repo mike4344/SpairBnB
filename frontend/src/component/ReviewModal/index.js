@@ -7,7 +7,7 @@ function ReviewModal({spotId}) {
 
   return (
     <>
-      <button className="Review_button" onClick={() => setShowModal(true)}>Write review</button>
+      <button className="Review_button signup-button" onClick={() => setShowModal(true)}>Write review</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <div className="modal-box">

@@ -1,11 +1,11 @@
 // frontend/src/components/ReviewFormModal/ReviewForm.js
 import React, { useState } from "react";
 import * as SpotActions from "../../store/spots";
-import { useDispatch } from "react-redux";
 import ReactStars from "react-rating-stars-component";
+import {useHistory} from 'react-router-dom'
 
 function ReviewForm({spotId}) {
-  const dispatch = useDispatch();
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [reviewBody, setReviewBody] = useState('')
   const [rating, setRating] = useState(0)
@@ -15,10 +15,13 @@ function ReviewForm({spotId}) {
     const review = {reviewBody, rating}
     try{
         await SpotActions.postReview(spotId, review)
+        history.push(`/spots/${spotId}`)
+        window.location.reload()
       } catch(err){
         // setErrors(err.errors);
       }
     }
+
     const ratingSettings = {
         size: 30,
         value: 2.5,
@@ -43,7 +46,7 @@ function ReviewForm({spotId}) {
         How was your stay...
        <textarea className="review" value={reviewBody} onChange={e => setReviewBody(e.target.value)} />
       </label>
-      <button type="submit">Confirm Review</button>
+      <button className="signup-button" type="submit">Confirm Review</button>
     </form>
   );
 }

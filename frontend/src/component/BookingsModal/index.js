@@ -7,7 +7,7 @@ function BookingsModal({spotId}) {
 
   return (
     <>
-      <button className="bookings_button" onClick={() => setShowModal(true)}>Book Now</button>
+      <button className="bookings_button signup-button" onClick={() => setShowModal(true)}>Book Now</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <BookingsForm spotId={spotId}/>

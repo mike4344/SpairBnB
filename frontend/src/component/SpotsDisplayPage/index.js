@@ -20,12 +20,12 @@ function SpotsDisplayPage () {
         <div className="page-container">
             {spotIsLoaded && (
             <div className="spot-container">
-                <ImageCarousel images={spot.images}/>
+                <ImageCarousel images={spot.images} addClass='from-page' />
                 <div className="location-container">
                     <span>{spot.address}, {spot.city}, {spot.state}</span>
                 </div>
-                <h2>{spot.spotName}</h2>
-                <pre>
+                <h1 className="spot-name">Welcome to {spot.spotName}</h1>
+                <pre className="spot-details">
                     {spot.spotDetails}
                 </pre>
                 <BookingsModal spotId={spot.id} />

@@ -126,12 +126,14 @@ function SpotsSearchDisplayPage () {
                                 onCloseClick={() => setSelectedSpot({})}
                                 >
                                  <div className='map-spot-display'>
-                                    <p>{selectedSpot.spotName}</p>
-                                    <ImageCarousel images={selectedSpot.images} />
-                                    <pre>{selectedSpot.spotDetails}</pre>
+                                    <h1 className='spot-name'>{selectedSpot.spotName}</h1>
+                                    <ImageCarousel images={selectedSpot.images} addClass='from-map'/>
+                                    <pre className='spot-details'>{selectedSpot.spotDetails}</pre>
+                                    <div className='button-box'>
                                     <BookingsModal spotId={selectedSpot.id} />
-                                    <NavLink to={`/spots/${selectedSpot.id}`}>Read More...</NavLink>
-                                 </div>
+                                    <NavLink className='signup-button' to={`/spots/${selectedSpot.id}`}>Read More...</NavLink>
+                                    </div>
+                                </div>
                                 </InfoWindow>
                                 )
                             }

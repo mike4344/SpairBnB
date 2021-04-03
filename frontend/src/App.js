@@ -19,6 +19,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <SpotsSearchDisplayPage />
+          </Route>
           <Route exact path="/spots/search">
             <SpotsSearchDisplayPage />
           </Route>

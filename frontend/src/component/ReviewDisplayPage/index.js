@@ -14,7 +14,7 @@ function ReviewDisplayPage ({spotId}) {
         }, []);
 
     return (
-        <div className="page-container">
+        <div className="page-container spot-details">
             {spotIsLoaded && (
                 reviews.map((review, i)=>{
             return(
