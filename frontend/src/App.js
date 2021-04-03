@@ -1,11 +1,9 @@
 // frontend/src/App.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch, withRouter } from "react-router-dom";
-import SignupFormPage from "./component/SignUpFormPage";
+import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./component/Navigation";
-import SpotsCreationFormPage from "./component/SpotsCreationFormPage"
 import SpotsDisplayPage from "./component/SpotsDisplayPage"
 import SpotsSearchDisplayPage from "./component/SpotSearchDisplayPage"
 
@@ -21,12 +19,6 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/spots">
-            <SpotsCreationFormPage />
-          </Route>
           <Route exact path="/spots/search">
             <SpotsSearchDisplayPage />
           </Route>

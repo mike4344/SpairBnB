@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import SpotCreationModal from "../SpotCreationModal"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,10 +31,12 @@ function ProfileButton({ user }) {
   };
 
   return (
+    <>
+    <SpotCreationModal />
     <div className='nav-button_box_logged-in'>
 
       <button className='nav-button_menu' onClick={openMenu}>
-        <img src='/Icons/icons8-menu-24.png' alt='open menu'/>
+        <img className='nav-button_menu-image' src='/Icons/icons8-menu-24.png' alt='open menu'/>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
@@ -45,6 +48,7 @@ function ProfileButton({ user }) {
         </ul>
       )}
     </div>
+    </>
   );
 }
 

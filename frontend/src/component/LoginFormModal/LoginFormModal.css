@@ -11,6 +11,7 @@
   word-wrap: none;
   white-space: nowrap;
 }
+
 @keyframes pulseLogin {
   0% {
     transform: translateY(-1px);

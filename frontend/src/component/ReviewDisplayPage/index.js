@@ -9,17 +9,9 @@ function ReviewDisplayPage ({spotId}) {
       (async() =>{
        const review = await SpotActions.getReview(spotId)
        await setReviews(review)
-       console.log(review)
-       console.log(reviews)
        setSpotIsLoaded(true)})();
 
         }, []);
-    // const displaySettings = {
-    //         size: 30,
-    //         value: review.rating,
-    //         edit: false
-    // }
-
 
     return (
         <div className="page-container">

@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom'
 import * as SpotActions from '../../store/spots'
 import Geocode from "react-geocode";
 
-function SpotsCreationFormPage() {
+function SpotCreationForm() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
     const [images, setImages] = useState([])
@@ -48,15 +48,18 @@ function SpotsCreationFormPage() {
             <ul>
                 {errors.map((error, idx) => <li key={idx}> {error}</li>)}
             </ul>
-            <label>
-                Spot Name
-                <input
-                    type="text"
-                    value={spotName}
-                    onChange={(e) => setSpotName(e.target.value)}
-                    required
-                    />
-            </label>
+            <div>
+                <label>
+                    Spot Name
+                    <input
+                        type="text"
+                        value={spotName}
+                        onChange={(e) => setSpotName(e.target.value)}
+                        required
+                        />
+                </label>
+            </div>
+            <div>
             <label>
                 Spot details
                 <textarea
@@ -65,10 +68,14 @@ function SpotsCreationFormPage() {
                 required
                 ></textarea>
             </label>
+            </div>
+            <div>
             <label>
                 Add images
-                <input type="file" onChange={updateFiles} multiple />
+                <input className='file-upload-button'type="file" onChange={updateFiles} multiple />
             </label>
+            </div>
+            <div>
             <label>
                 Address
                 <input
@@ -78,6 +85,8 @@ function SpotsCreationFormPage() {
                     required
                     />
             </label>
+            </div>
+            <div>
             <label>
                 City
                 <input
@@ -87,7 +96,9 @@ function SpotsCreationFormPage() {
                 required
                 />
             </label>
-            <label>
+            </div>
+            <div>
+            <label className="state">
                 State
                 <select
                 value={state}
@@ -146,8 +157,10 @@ function SpotsCreationFormPage() {
                     <option value="WY">WY</option>
                 </select>
             </label>
-            <button type="submit">Sign Up</button>
+            </div>
+
+            <button className='signup-button btn' type="submit">Create Spot</button>
         </form>
     )
 }
-export default SpotsCreationFormPage
+export default SpotCreationForm

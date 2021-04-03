@@ -1,21 +1,20 @@
 // frontend/src/components/SpotsSearchDisplayPage/index.js
 import React, { useState, useEffect} from 'react';
 import * as SpotActions from '../../store/spots'
-import {useDispatch} from 'react-redux'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow}  from '@react-google-maps/api'
 import ImageCarousel from '../ImageCarousel'
+import {NavLink} from 'react-router-dom'
+import BookingsModal from '../BookingsModal'
 import Geocode from "react-geocode";
-const containerStyle = {width: '400px', height: '400px'}
+const containerStyle = {width: '100%', height: '100%'}
 
 function SpotsSearchDisplayPage () {
     const [searchIsLoaded, setSearchIsLoaded] = useState(false)
-    const dispatch = useDispatch();
     const [center, setCenter] = useState({})
     const [search, setSearch] = useState({})
     const [map, setMap] = useState(null)
     const [selectedSpot, setSelectedSpot] = useState({})
     const [location, setLocation] = useState({})
-    const [results, setResults] = useState({})
     const [errors, setErrors] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
     const onSelect = spot => {
@@ -83,15 +82,7 @@ function SpotsSearchDisplayPage () {
                 {errors.map((error, idx) => <li key={idx}> {error}</li>)}
             </ul>
             {searchIsLoaded && (
-                <div className='search'>
-                    <form onSubmit={handleSubmit}>
-                        <input
-                        type='text'
-                        value={searchQuery}
-                        onChange={(e) =>setSearchQuery(e.target.value)}
-                        />
-                        <button type='submit'>Search</button>
-                    </form>
+                <div className='search-box'>
                    {isLoaded && (
                        <GoogleMap
                         mapContainerStyle={containerStyle}
@@ -100,6 +91,15 @@ function SpotsSearchDisplayPage () {
                         onload={onLoad}
                         onUnmount={onUnmount}
                         >
+                    <form onSubmit={handleSubmit} className='search-bar'>
+                        <input
+                        className='search-input'
+                        type='text'
+                        value={searchQuery}
+                        onChange={(e) =>setSearchQuery(e.target.value)}
+                        />
+                        <button className='search-button' type='submit'>Search</button>
+                    </form>
                         {search.map((spotInfo, i) =>{
 
                                 const locationString = spotInfo.location
@@ -125,9 +125,12 @@ function SpotsSearchDisplayPage () {
                                 position={location}
                                 onCloseClick={() => setSelectedSpot({})}
                                 >
-                                 <div>
+                                 <div className='map-spot-display'>
                                     <p>{selectedSpot.spotName}</p>
                                     <ImageCarousel images={selectedSpot.images} />
+                                    <pre>{selectedSpot.spotDetails}</pre>
+                                    <BookingsModal spotId={selectedSpot.id} />
+                                    <NavLink to={`/spots/${selectedSpot.id}`}>Read More...</NavLink>
                                  </div>
                                 </InfoWindow>
                                 )

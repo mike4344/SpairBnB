@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import SignUpModal from '../SignUpModal';
+import SpotCreationModal from '../SpotCreationModal'
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -21,7 +23,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink  to="/signup"><button className="signup-button">Sign Up</button></NavLink>
+        <SignUpModal />
       </>
     );
   }
@@ -36,6 +38,9 @@ function Navigation({ isLoaded }){
               id='home-logo' src='/Icons/icons8-home.svg' alt='Home'/>
           </NavLink>
           <div className='nav-button_box'>
+          <NavLink to='/spots/search'>
+            <img className='search' src='/Icons/icons8-search-32.png' alt='Search' />
+          </NavLink>
           {isLoaded && sessionLinks}
           </div>
         </div>

@@ -44,9 +44,9 @@
   color: rgb(85, 85, 85);
   border: none;
   transition: all 0.5s;
-  background-color: white;
+  background-color: transparent;
   font-weight: 600;
-  height: 100%;
+  /* height: 100%; */
   font-size: 14px;
   border-radius: 50%;
   text-decoration: none;
@@ -76,15 +76,24 @@
   display: flex;
   justify-content: space-around;
 }
+.search-button {
+  border-left: none;
+  background-color: white;
+}
+.search-input {
+  border-right: none;
+}
 .nav-button_menu {
   border: none;
   background-color: transparent;
   align-items: flex-start;
   outline: none;
   cursor: pointer;
+  width: 28px;
 }
-.nav-button_menu:hover {
+.nav-button_menu-image:hover {
   animation: menu 0.5s linear;
+  transform-origin: center center;
 }
 @keyframes menu {
   0% {
@@ -92,6 +101,7 @@
   }
   50% {
     transform: rotate(90deg);
+    border-radius: 25%;
   }
   100% {
     transform: rotate(180deg);
@@ -102,10 +112,8 @@
   list-style-type: none;
   color: rgb(85, 85, 85);
   border: 1px solid gray;
-  transition: all 0.5s;
   background-color: white;
   font-weight: 600;
-  height: 100%;
   font-size: 14px;
   border-radius: 10px;
   text-decoration: none;
@@ -113,11 +121,30 @@
   white-space: nowrap;
   padding-bottom: 30px;
   box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.2);
-  position: sticky;
+  position: fixed;
+  right: 5%;
+  top: 5%;
+  width: 200px;
+  z-index: 10;
+  animation: rotateMenu 1s linear;
+  transform-origin: top left;
+}
+
+@keyframes rotateMenu {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  70% {
+    transform: rotateX(20deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
 }
 .nav-button_box_logged-in {
   display: flex;
   flex-direction: column;
+  width: 28px;
 }
 .logout-button {
   color: rgb(85, 85, 85);
@@ -132,6 +159,7 @@
   word-wrap: none;
   white-space: nowrap;
 }
+
 .logout-button:hover {
   animation: pulseLogin 0.8s linear infinite;
 }
@@ -139,4 +167,134 @@
   height: 28px;
   width: 28px;
   border-radius: 50%;
+}
+.search {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+}
+.search:hover {
+  animation: pulseLogin 0.8s linear infinite;
+}
+.search-bar {
+  position: fixed;
+  left: 40%;
+  display: flex;
+}
+
+#modal-content {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.modal-box {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+}
+
+textarea {
+  width: 100%;
+  height: 25%;
+  resize: none;
+}
+
+input {
+  width: 100%;
+  border-radius: 2px;
+}
+input:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+textarea:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+.search-bar:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+select:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+input:not([type="image" i]) {
+  box-sizing: border-box;
+}
+select {
+  border-radius: 2px;
+  margin-top: 2px;
+}
+.state {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.btn {
+  justify-self: flex-end;
+}
+.map-spot-display > pre {
+  text-overflow: ellipsis;
+  height: 150px;
+  word-wrap: break-word;
+  overflow: hidden;
+  width: 100%;
+}
+.map-spot-display {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.image-container {
+  width: 200px;
+}
+.image-container > img {
+  position: absolute;
+}
+.next {
+  position: relative;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.prev {
+  position: relative;
+  z-index: 5;
+  top: 80%;
+  left: 20%;
+  /* transform: translate(-50%, -50%); */
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }

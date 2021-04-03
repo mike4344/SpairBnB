@@ -1,17 +1,17 @@
-// frontend/src/components/ReviewModal/index.js
+// frontend/src/components/SignupModal/index.js
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import ReviewForm from './ReviewModalForm'
-function ReviewModal({spotId}) {
+import SignupForm from './SignupModalForm'
+function SignupModal({spotId}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button className="Review_button" onClick={() => setShowModal(true)}>Write review</button>
+      <button className="signup-button" onClick={() => setShowModal(true)}>Sign Up</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <div className="modal-box">
-          <ReviewForm spotId={spotId}/>
+          <SignupForm spotId={spotId}/>
           </div>
         </Modal>
       )}
@@ -19,4 +19,4 @@ function ReviewModal({spotId}) {
   );
 }
 
-export default ReviewModal;
+export default SignupModal;
