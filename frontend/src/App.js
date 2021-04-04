@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./component/Navigation";
 import SpotsDisplayPage from "./component/SpotsDisplayPage"
 import SpotsSearchDisplayPage from "./component/SpotSearchDisplayPage"
+import Splash from "./component/SplashPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <SpotsSearchDisplayPage />
+            <Splash />
           </Route>
           <Route exact path="/spots/search">
             <SpotsSearchDisplayPage />
