@@ -2,8 +2,11 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import ReviewForm from './ReviewModalForm'
-function ReviewModal({spotId}) {
+function ReviewModal({spotId, onChange, reload}) {
   const [showModal, setShowModal] = useState(false);
+  function handleChange () {
+    setShowModal(false)
+  }
 
   return (
     <>
@@ -11,7 +14,7 @@ function ReviewModal({spotId}) {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <div className="modal-box">
-          <ReviewForm spotId={spotId}/>
+          <ReviewForm spotId={spotId} onChange={handleChange} onChange2={onChange} reload={reload}/>
           </div>
         </Modal>
       )}

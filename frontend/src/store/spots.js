@@ -101,7 +101,7 @@ export const createSpot = (spot) => async (dispatch) => {
     const data = await response.json();
 
     dispatch(setSpot(data.spot, data.images))
-    return response
+    return data
 }
 const spotReducer = (state={spot:null}, action) => {
     let newState;

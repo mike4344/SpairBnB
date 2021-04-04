@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import * as SpotActions from "../../store/spots";
 import { useDispatch } from "react-redux";
 
-function BookingsForm({spotId}) {
+function BookingsForm({spotId, onChange}) {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [startDate, setStartDate] = useState({})
@@ -13,7 +13,8 @@ function BookingsForm({spotId}) {
     setErrors([]);
     const booking = {startDate, endDate}
     try{
-        await SpotActions.postBooking(spotId, booking)
+      await SpotActions.postBooking(spotId, booking)
+      onChange()
       } catch(err){
         // setErrors(err.errors);
       }

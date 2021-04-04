@@ -2,7 +2,7 @@
 import React, { useState, useEffect} from 'react';
 import ReactStars from "react-rating-stars-component";
 import * as SpotActions from "../../store/spots"
-function ReviewDisplayPage ({spotId}) {
+function ReviewDisplayPage ({spotId, change}) {
     const [spotIsLoaded, setSpotIsLoaded] = useState(false);
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
@@ -11,7 +11,7 @@ function ReviewDisplayPage ({spotId}) {
        await setReviews(review)
        setSpotIsLoaded(true)})();
 
-        }, []);
+        }, [change]);
 
     return (
         <div className="page-container spot-details">

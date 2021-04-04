@@ -7,7 +7,7 @@ import Navigation from "./component/Navigation";
 import SpotsDisplayPage from "./component/SpotsDisplayPage"
 import SpotsSearchDisplayPage from "./component/SpotSearchDisplayPage"
 import Splash from "./component/SplashPage"
-
+import Footer from "./component/Footer"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,8 +30,9 @@ function App() {
             <SpotsDisplayPage />
           </Route>
         </Switch>
-
       )}
+      <Footer/>
+
     </>
   );
 }

@@ -2,6 +2,7 @@
   border: 1px solid red;
 } */
 body {
+  width: 100%;
 }
 .nav {
   display: flex;
@@ -382,4 +383,24 @@ select {
 }
 .welcome > p {
   text-align: center;
+}
+.footer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-image: linear-gradient(
+    to top,
+    rgb(66, 66, 66),
+    rgb(167, 167, 167),
+    transparent
+  );
+  align-items: center;
+}
+.footer > img {
+  border-radius: 50%;
+}
+.footer > a {
+  text-decoration: none;
+  color: black;
 }

@@ -4,7 +4,7 @@ import * as SpotActions from "../../store/spots";
 import ReactStars from "react-rating-stars-component";
 import {useHistory} from 'react-router-dom'
 
-function ReviewForm({spotId}) {
+function ReviewForm({spotId, onChange, onChange2, reload}) {
   const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [reviewBody, setReviewBody] = useState('')
@@ -15,8 +15,8 @@ function ReviewForm({spotId}) {
     const review = {reviewBody, rating}
     try{
         await SpotActions.postReview(spotId, review)
-        history.push(`/spots/${spotId}`)
-        window.location.reload()
+        onChange()
+        onChange2(reload)
       } catch(err){
         // setErrors(err.errors);
       }

@@ -9,12 +9,19 @@ import ReviewModal from '../ReviewModal'
 import ReviewDisplayPage from '../ReviewDisplayPage'
 function SpotsDisplayPage () {
     const dispatch = useDispatch();
+    const [reload, setReload]  = useState(false)
     const {spotId} = useParams()
     const [spotIsLoaded, setSpotIsLoaded] = useState(false);
     useEffect(() => {
       dispatch(SpotActions.getSpot(spotId)).then(() => setSpotIsLoaded(true));
     }, [dispatch]);
     const spot = useSelector(state=> state.spot.spot)
+    function handleChange (reload) {
+        setReload(!reload)
+      }
+    useEffect(() => {
+        console.log(reload)
+    },[reload])
 
     return (
         <div className="page-container">
@@ -29,8 +36,8 @@ function SpotsDisplayPage () {
                     {spot.spotDetails}
                 </pre>
                 <BookingsModal spotId={spot.id} />
-                <ReviewModal spotId={spot.id} />
-                <ReviewDisplayPage spotId={spot.id} />
+                <ReviewModal spotId={spot.id} onChange={handleChange} reload={reload} />
+                <ReviewDisplayPage spotId={spot.id} change={reload} onChange={handleChange} />
             </div>
             )}
         </div>
