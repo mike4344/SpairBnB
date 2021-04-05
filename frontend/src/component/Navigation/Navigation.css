@@ -3,6 +3,11 @@
 } */
 body {
   width: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgb(230, 230, 230)
+  );
 }
 .nav {
   display: flex;
@@ -332,6 +337,7 @@ select {
   text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
   white-space: pre-wrap;
   word-wrap: break;
+  width: 50%;
 }
 .splash-container {
   height: 100%;
@@ -370,7 +376,7 @@ select {
   z-index: 1;
   color: rgba(20, 20, 20, 0.6);
   font-size: 54px;
-  background-color: rgba(210, 210, 210, 0.2);
+
   text-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
@@ -378,8 +384,9 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: linear-gradient(to right);
-  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3);
+  width: 50%;
+  color: black;
 }
 .welcome > p {
   text-align: center;
@@ -403,4 +410,26 @@ select {
 .footer > a {
   text-decoration: none;
   color: black;
+}
+.splash-container {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgb(230, 230, 230)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.spot-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button-container {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
 }

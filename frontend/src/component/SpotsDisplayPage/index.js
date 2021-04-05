@@ -35,8 +35,10 @@ function SpotsDisplayPage () {
                 <pre className="spot-details">
                     {spot.spotDetails}
                 </pre>
+                <div className='button-container'>
                 <BookingsModal spotId={spot.id} />
                 <ReviewModal spotId={spot.id} onChange={handleChange} reload={reload} />
+                </div>
                 <ReviewDisplayPage spotId={spot.id} change={reload} onChange={handleChange} />
             </div>
             )}
