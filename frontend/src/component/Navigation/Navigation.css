@@ -272,6 +272,13 @@ select {
   overflow: hidden;
   width: 100%;
 }
+.map-spot-display > pre {
+  text-overflow: ellipsis;
+  height: 150px;
+  word-wrap: break-word;
+  overflow: hidden;
+  width: 100%;
+}
 .map-spot-display {
   height: 100%;
   overflow-x: hidden;
