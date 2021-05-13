@@ -8,7 +8,7 @@ let createImages = amount =>{
 
       let image = {
         imageUrl:imageUrl,
-        spotId: j + 1,
+        spotId: i + 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }
