@@ -6,7 +6,7 @@ let createImages = amount =>{
     for(let i = 0; i< 5; i++){
 
       let image = {
-        imageURL: faker.random.image(),
+        imageUrl: faker.random.image(),
         spotId: i + 1,
         createdAt: new Date(),
         updatedAt: new Date()
