@@ -5,7 +5,9 @@ let createImages = amount =>{
   for(let i = 0; i < amount; i++){
     for(let j = 0; j< 5; j++){
       let imageUrl = faker.image.city()
-        while(!imageUrl.includes('https'))
+        while(!imageUrl.includes('https')){
+          imageUrl = faker.image.city()
+        }
       let image = {
         imageUrl:imageUrl,
         spotId: j + 1,
