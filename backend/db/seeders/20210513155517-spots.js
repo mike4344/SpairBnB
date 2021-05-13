@@ -7,7 +7,7 @@ let createSpots = amount =>{
       spotName: faker.random.words(4),
       spotDetails: faker.random.words(50),
       location: `${faker.address.latitude(45, 40)},${faker.address.longitude(-73, -68)}`,
-      address: faker.address.streetAdress(),
+      address: faker.address.streetAddress(),
       city: faker.address.city(),
       state: 'New York',
 
