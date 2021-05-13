@@ -38,11 +38,7 @@ function SpotCreationForm({onChange}) {
                 history.push(`/spots/${res.spot.id}`)
 
             }
-            // .catch(async (res) =>{
-
-            //     // data = await res.json();
-            //     // if (data && data.errors) setErrors(data.errors);
-            // })
+           
 
 
     const updateFiles = e => {
