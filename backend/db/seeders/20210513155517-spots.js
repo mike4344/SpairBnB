@@ -16,7 +16,7 @@ let createSpots = amount =>{
     spots.push(spot)
   }
 }
-createSpots(200)
+createSpots(20)
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Spots', spots, {});

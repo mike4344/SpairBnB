@@ -18,7 +18,7 @@ let createReviews = amount =>{
     }
   }
 }
-createReviews(199)
+createReviews(19)
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Reviews', reviews, {});

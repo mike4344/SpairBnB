@@ -15,7 +15,7 @@ let createImages = amount =>{
     }
   }
 }
-createImages(199)
+createImages(19)
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Images', images, {});

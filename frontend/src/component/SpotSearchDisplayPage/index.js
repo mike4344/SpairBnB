@@ -115,7 +115,7 @@ function SpotsSearchDisplayPage () {
                                 key={i}
                                 position={locationObject}
                                 onClick={() => {
-                                    console.log(spotInfo)
+                                   
                                     onSelect(spotInfo)}}
                                 />
                         )
