@@ -3,7 +3,7 @@ const faker = require('faker');
 let reviews = []
 let createReviews = amount =>{
   for(let i = 0; i < amount; i++){
-    for(let i = 0; i< 5; i++){
+    for(let j = 0; j< 5; j++){
 
       let review = {
         reviewBody: faker.random.words(Math.floor(Math.random() * 8) + 1),
