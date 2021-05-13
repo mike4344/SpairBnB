@@ -10,6 +10,8 @@ let createReviews = amount =>{
         spotId: i + 1,
         rating: Math.floor(Math.random() * 5),
         authorId: Math.floor(Math.random() * 3) + 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       }
       reviews.push(review)

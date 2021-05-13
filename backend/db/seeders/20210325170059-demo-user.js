@@ -12,6 +12,8 @@ module.exports = {
         firstName: 'jon',
         lastName: 'smith',
         hashedPassword: bcrypt.hashSync('password'),
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         email: faker.internet.email(),
@@ -20,6 +22,8 @@ module.exports = {
         firstName: 'jon',
         lastName: 'smith',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         email: faker.internet.email(),
@@ -28,6 +32,8 @@ module.exports = {
         firstName: 'jon',
         lastName: 'smith',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         email: faker.internet.email(),
@@ -36,6 +42,8 @@ module.exports = {
         firstName: 'jon',
         lastName: 'smith',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         email: faker.internet.email(),
@@ -44,6 +52,8 @@ module.exports = {
         firstName: 'jon',
         lastName: 'smith',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
     ], {});
   },

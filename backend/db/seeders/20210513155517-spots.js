@@ -10,7 +10,8 @@ let createSpots = amount =>{
       address: faker.address.streetAddress(),
       city: faker.address.city(),
       state: 'New York',
-
+      createdAt: new Date(),
+        updatedAt: new Date()
     }
     spots.push(spot)
   }

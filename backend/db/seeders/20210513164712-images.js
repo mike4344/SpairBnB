@@ -8,6 +8,8 @@ let createImages = amount =>{
       let image = {
         imageURL: faker.random.image(),
         spotId: i + 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
       images.push(image)
     }
