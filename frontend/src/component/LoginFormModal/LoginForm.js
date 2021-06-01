@@ -22,7 +22,7 @@ function LoginForm() {
 
   const demo = (e) => {
     setPassword('password')
-    setCredential('demo@aa.io')
+    setCredential('demo@user.io')
   }
 
   return (
