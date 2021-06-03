@@ -1,4 +1,4 @@
-![Intro](https://github.com/mike4344/Interview-Bot/blob/main/react-app/public/robotsplash.gif?raw=true)
+![Intro]()
 # Spair Bnb
 ## _Map Based Rental App_
 
@@ -45,19 +45,14 @@ npm start
 ## Features
 
 
-### Users can view spots on the map
-![Interview guide](https://github.com/mike4344/Interview-Bot/blob/main/react-app/public/interview-guide-screen.png?raw=true)
-
-
-### Users can search on the map
-![Interview page](https://github.com/mike4344/Interview-Bot/blob/main/react-app/public/interview-screen.png?raw=true)
-
+### Users can view and search for spots on the map
+![Interview guide]()
 
 ### Users can view images, spot description all from the map
-![Interview text feedback](https://github.com/mike4344/Interview-Bot/blob/main/react-app/public/text-feedback-screen.png?raw=true)
+![Interview text feedback]()
 
 ### Users can review spots
-![Interview text feedback](https://github.com/mike4344/Interview-Bot/blob/main/react-app/public/text-feedback-screen.png?raw=true)
+![Interview text feedback]()
 
 ## Pushing to Heroku
 ```
