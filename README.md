@@ -1,4 +1,4 @@
-![Intro]()
+![Intro](https://github.com/mike4344/SpairBnB/blob/main/frontend/public/example.gif?raw=true)
 # Spair Bnb
 ## _Map Based Rental App_
 
