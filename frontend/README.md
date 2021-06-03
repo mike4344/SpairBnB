@@ -46,13 +46,13 @@ npm start
 
 
 ### Users can view and search for spots on the map
-![Interview guide]()
+![Spot Search](https://github.com/mike4344/SpairBnB/blob/main/frontend/public/spairbnb2.png?raw=true)
 
 ### Users can view images, spot description all from the map
-![Interview text feedback]()
+![Spot Window](https://github.com/mike4344/SpairBnB/blob/main/frontend/public/spairbnb1.png?raw=true)
 
 ### Users can review spots
-![Interview text feedback]()
+![Spot Reviews](https://github.com/mike4344/SpairBnB/blob/main/frontend/public/spairbnb3.png?raw=true)
 
 ## Pushing to Heroku
 ```
