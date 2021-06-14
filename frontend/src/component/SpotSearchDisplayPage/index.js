@@ -68,10 +68,8 @@ function SpotsSearchDisplayPage () {
             Geocode.setLanguage('en')
             Geocode.setRegion('us')
             Geocode.setLocationType('ROOFTOP')
-            console.log('results', searchQuery)
             Geocode.fromAddress(`${searchQuery}`).then((response) => {
                 const {lat , lng} = response.results[0].geometry.location
-                console.log(lat, lng)
                 setCenter({lat, lng})
             }).catch(e => setErrors(e))
 
@@ -115,7 +113,7 @@ function SpotsSearchDisplayPage () {
                                 key={i}
                                 position={locationObject}
                                 onClick={() => {
-                                   
+
                                     onSelect(spotInfo)}}
                                 />
                         )

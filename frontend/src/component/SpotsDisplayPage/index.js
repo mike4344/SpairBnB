@@ -20,7 +20,7 @@ function SpotsDisplayPage () {
         setReload(!reload)
       }
     useEffect(() => {
-        console.log(reload)
+      
     },[reload])
 
     return (
