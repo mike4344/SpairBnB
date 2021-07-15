@@ -19,7 +19,7 @@ function ReviewDisplayPage ({spotId, change}) {
                 reviews.map((review, i)=>{
             return(
             <div key={i}>
-                {console.log(review.rating)}
+               
                 <ReactStars {...{
             size: 30,
             value: review.rating,
